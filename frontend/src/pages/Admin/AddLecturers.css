@@ -1,0 +1,123 @@
+.page-container {
+    font-family: Poppins, sans-serif;
+    height: 100vh;
+    width: 100%;
+  }
+  .content-container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #f8f8f9;
+    margin-top: 100px;
+    width: 100%;
+  }
+
+  .card {
+    padding: 20px 50px;
+    border: none;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .center-text {
+    padding: 0 150px 10px;
+    text-align: center;
+    color: #767676;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+    transition: margin-left 0.3s ease;
+    overflow-x: hidden;
+  }
+  .main-container {
+    display: block;
+    width: 100%;
+  }
+  
+  .main-content.shifted {
+    margin-left: 250px;
+    max-width: calc(100% - 250px);
+  }
+  .lecturer-details {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+  }
+  
+  .form-control {
+    height: 45px;
+    border-radius: 6px;
+    border: 1px solid #CED4DA;
+    font-size: 16px;
+    padding: 8px 12px;
+    background-color: #F8F9FA;
+   }
+
+  .form-select {
+    height: 45px;
+    border-radius: 6px;
+    border: 1px solid #CED4DA;
+    font-size: 16px;
+    padding: 8px 12px;
+    background-color: #F8F9FA;
+  }
+  
+  .btn {
+    padding: 8px 30px;
+    background-color: #00568D;
+    border-color: #00568D;
+    color: white;
+    margin-top: 10px;
+    border-radius: 8px;
+    width: 200px;
+    margin-left: 500px;
+    display: block;
+  }
+  
+  .btn:hover {
+    background-color: #00476b;
+    border-color: #00476b;
+  }
+  
+  .btn:active, .btn:focus {
+    background-color: #00476b;
+    border-color: #00476b;
+    box-shadow: none;
+  }
+  
+  /* Logo styling */
+  .logo {
+    width: 143px; 
+    height: 50px; 
+    margin: 0 auto;
+    display: block;
+  }
+  .label-text {
+    color: black; 
+    flex: 1;
+  }
+  .label-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .colon {
+    width: 10px;
+    padding-left: 5px;
+  }

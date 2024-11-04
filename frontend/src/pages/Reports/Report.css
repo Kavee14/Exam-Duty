@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+}
+
+body {
+    background-color: #f4f6f6;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.content-container {
+    padding-top: 100px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
+}
+
+/* Card Styling */
+.card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #00568D;
+}
+
+.card .thick-line {
+    height: 3px;
+    background-color: #ccc;
+    margin-bottom: 15px;
+}
+
+/* Voucher and Report Sections */
+.voucher, .report {
+    background: #FFFFFF;
+    border-radius: 8px 0 0 0;
+    opacity: 1;
+    position: relative;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Default Dimensions for Larger Screens */
+.voucher {
+    display: flex;
+    width: 100%;
+    max-width: 1041px;
+    height: 250px;
+    gap: 0;
+}
+
+.report {
+    display: flex;
+    width: 100%;
+    max-width: 1041px;
+    height: 250px;
+    gap: 0;
+}
+
+/* Actions Styling */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-items p {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 16px;
+}
+
+.action-items i {
+    margin-right: 8px;
+    color: #00568D;
+}
+
+/* Buttons Styling */
+.buttons {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 15px;
+}
+
+.buttons button {
+    padding: 5px 25px;
+    background-color: #00568D;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: #1d8ada;
+}
+
+.buttons button:focus {
+    outline: 2px solid #1d71b8;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .voucher, .report {
+        width: 90%;
+        height: auto; /* Allow flexible height */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buttons {
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .voucher, .report {
+        flex-direction: column;
+        width: 100%;
+        height: auto; /* Height adapts to content */
+        padding: 10px;
+    }
+
+    .card h2 {
+        font-size: 18px;
+    }
+
+    .buttons button {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-container {
+        padding-top: 100px;
+        margin-top: 10px;
+    }
+
+    .actions {
+        gap: 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-items p {
+        font-size: 14px;
+    }
+
+    .card h2 {
+        font-size: 16px;
+    }
+
+    .buttons button {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+}

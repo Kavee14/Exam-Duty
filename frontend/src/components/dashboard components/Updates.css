@@ -1,0 +1,22 @@
+.updates {
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow:0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .updates p {
+    margin-bottom: 5px;
+    font-size: 17px;
+    color: #00568D;
+    font-weight: 510;
+  }
+  
+  .no-updates {
+    background-color: #e4e5ea;
+    padding: 30px;
+    text-align: center;
+    color: #999;
+    border-radius: 10px;
+  }
+  

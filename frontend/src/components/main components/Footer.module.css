@@ -1,0 +1,42 @@
+/* Footer.module.css */
+.footer{
+    font-family: Poppins, sans-serif;
+}
+.description {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.contact{
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+
+}
+
+.contactInfo {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.footerBottom {
+    font-size: 14px;
+    color: #ffff;
+    text-align: center;
+    background-color:#00568D;
+;
+    padding: 10px;
+}
+
+.logo {
+    width: 140px;
+    margin-bottom: 40px;
+
+}
+
+.footerContainer {
+    background-color:#E8EBEDCC;
+    padding: 20px;
+}

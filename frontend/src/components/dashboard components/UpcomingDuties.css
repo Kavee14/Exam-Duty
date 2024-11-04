@@ -1,0 +1,61 @@
+.upcoming-duties {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.Title{
+  color: #00568D;
+  font-family: Poppins, sans-serif;
+  font-weight: 510;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.duty-box {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  border-radius: 8px;
+  width: 90%;
+  margin: 10px 10px 10px 30px;
+}
+
+.duty-date {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.date-number {
+  font-weight: 500;
+  font-size: 50px; /* Large date number */
+}
+
+.day-name {
+  font-size: 18px;
+  margin-top: -10px;
+  font-weight: 500;
+}
+
+.duty-details {
+  text-align: left; /* Align the text to the left */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.duty-details p {
+  margin: 5px 0;
+}
+
+/* Specific styles for first and second boxes */
+.blue-box {
+  background-color: #00568D; /* Blue background for first box */
+  color: white;
+}
+
+.white-box {
+  background-color: white; /* White background for second box */
+  color: #00568D; /* Set text color for white box */
+  border: 2px solid #00568D; /* Add a blue stroke (border) to the white box */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow for depth */
+  border-radius: 8px;
+}

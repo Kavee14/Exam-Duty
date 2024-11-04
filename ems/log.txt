@@ -1,0 +1,26 @@
+Lecturers notified successfully.
+Lecturers notified successfully.
+Lecturers notified successfully.
+Lecturers notified successfully.
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[42S02]: Base table or view not found: 1146 Table 'exam_duty.duty' doesn't exist (Connection: mysql, SQL: select * from `duty` where date(`duty_date`) = 2024-11-04)
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:825
+    821▕                     $this->getName(), $query, $this->prepareBindings($bindings), $e
+    822▕                 );
+    823▕             }
+    824▕ 
+  ➜ 825▕             throw new QueryException(
+    826▕                 $this->getName(), $query, $this->prepareBindings($bindings), $e
+    827▕             );
+    828▕         }
+    829▕     }
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:407
+      PDOException::("SQLSTATE[42S02]: Base table or view not found: 1146 Table 'exam_duty.duty' doesn't exist")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:407
+      PDO::prepare("select * from `duty` where date(`duty_date`) = ?")
+
