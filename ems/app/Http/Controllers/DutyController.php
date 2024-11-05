@@ -7,62 +7,124 @@ use App\Models\Duty;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\View;
-//use Barryvdh\Snappy\Facades\SnappyPdf as Pdf;
-
+use Illuminate\Support\Facades\Auth; // Added Auth facade
+use Illuminate\Http\JsonResponse;
 
 class DutyController extends Controller
 {
-    public function getUpcomingDuties($lec_id)
+    /**
+     * Get upcoming duties for a lecturer
+     * 
+     * @param string $lec_id
+     * @return JsonResponse
+     */
+    public function getUpcomingDuties($lec_id): JsonResponse
     {
-        $today = Carbon::today();
+        try {
+            $today = Carbon::today();
 
-        $duties = Duty::where('lec_id', $lec_id)
-            ->where('duty_date', '>=', $today)
-            ->orderBy('duty_date')
-            ->orderBy('start_time')
-            ->take(2)
-            ->get(['duty_date', 'start_time', 'end_time', 'course_code', 'exam_hall']);
+            $duties = Duty::where('lec_id', $lec_id)
+                ->where('duty_date', '>=', $today)
+                ->orderBy('duty_date')
+                ->orderBy('start_time')
+                ->take(2)
+                ->get(['duty_date', 'start_time', 'end_time', 'course_code', 'exam_hall']);
 
-        // Format the duty date and times
-        $formattedDuties = $duties->map(function ($duty) {
-            return [
-                'duty_date' => (new Carbon($duty->duty_date))->format('Y-m-d'), // Format duty_date to 'Y-m-d'
-                'time' => (new Carbon($duty->start_time))->format('H:i') . '-' . (new Carbon($duty->end_time))->format('H:i'), // Format the time to 24-hour format
-                'course_code' => $duty->course_code,
-                'exam_hall' => $duty->exam_hall,
-            ];
-        });
+            $formattedDuties = $duties->map(function ($duty) {
+                return [
+                    'duty_date' => Carbon::parse($duty->duty_date)->format('Y-m-d'),
+                    'time' => Carbon::parse($duty->start_time)->format('H:i') . '-' . 
+                             Carbon::parse($duty->end_time)->format('H:i'),
+                    'course_code' => $duty->course_code,
+                    'exam_hall' => $duty->exam_hall,
+                ];
+            });
 
-        return response()->json($formattedDuties);
+            return response()->json($formattedDuties);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to fetch upcoming duties',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
-
-
+    /**
+     * Download lecturer duty schedule as PDF
+     * 
+     * @param string $lec_id
+     * @return mixed
+     */
     public function downloadLecturerDutySchedule($lec_id)
     {
-        // Fetch the duty schedule data for the specific lecturer
-        $duties = Duty::where('lec_id', $lec_id)->get();
+        try {
+            $duties = Duty::where('lec_id', $lec_id)
+                ->orderBy('duty_date')
+                ->orderBy('start_time')
+                ->get();
 
-        // Check if the view exists and load it
-        if (View::exists('duties.schedule')) {
+            if ($duties->isEmpty()) {
+                return response()->json([
+                    'error' => 'No duties found for this lecturer'
+                ], 404);
+            }
+
+            if (!View::exists('duties.schedule')) {
+                return response()->json([
+                    'error' => 'PDF template not found'
+                ], 404);
+            }
+
             $pdf = Pdf::loadView('duties.schedule', compact('duties'));
-            return $pdf->download('Lecturer_Duty_Schedule.pdf');
-        }
+            return $pdf->download('Lecturer_Duty_Schedule_' . $lec_id . '.pdf');
 
-        // Handle the error case (view not found)
-        return response()->json(['error' => 'View not found'], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to generate PDF',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    public function getDutyDatesForLecturer()
+    /**
+     * Get duty dates for authenticated lecturer
+     * 
+     * @return JsonResponse
+     */
+    public function getDutyDatesForLecturer(): JsonResponse
     {
-        if (!Auth::check()) {
-            return response()->json(['error' => 'User not authenticated'], 401);
+        try {
+            if (!Auth::check()) {
+                return response()->json([
+                    'error' => 'User not authenticated'
+                ], 401);
+            }
+
+            $lecturerId = Auth::user()->lec_id;
+            
+            if (!$lecturerId) {
+                return response()->json([
+                    'error' => 'Lecturer ID not found in user profile'
+                ], 404);
+            }
+
+            $dutyDates = Duty::where('lec_id', $lecturerId)
+                ->orderBy('duty_date')
+                ->pluck('duty_date')
+                ->map(function ($date) {
+                    return Carbon::parse($date)->format('Y-m-d');
+                });
+
+            return response()->json([
+                'success' => true,
+                'dates' => $dutyDates
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to fetch duty dates',
+                'message' => $e->getMessage()
+            ], 500);
         }
-
-        $lecturerId = Auth::user()->lec_id;
-        $dutyDates = Duty::where('lec_id', $lecturerId)->pluck('duty_date');
-
-        return response()->json($dutyDates);
     }
-
 }

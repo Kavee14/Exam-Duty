@@ -12,15 +12,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('duty', function (Blueprint $table) {
-            $table->bigIncrements('duty_id');  // Add a semicolon here
+            $table->id();
             $table->string('lec_id');
+            // $table->bigIncrements('duty_id');  // Add a semicolon here
+            $table->string('course_code');
             $table->date('duty_date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->string('course_code');
             $table->string('exam_hall');
             // Add other fields as necessary
             $table->timestamps();
+
+            $table->foreign('lec_id')
+            ->references('lec_id')
+            ->on('lecturers')
+            ->onDelete('cascade');
         });
     }
 

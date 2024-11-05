@@ -21,7 +21,7 @@ class LecturerController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:lecturers,email',
             'phone' => 'required|string',
-            'Address' => 'required|string',
+            'address' => 'required|string',
             'position' => 'required|string',
             'department' => 'required|string',
         ]);
