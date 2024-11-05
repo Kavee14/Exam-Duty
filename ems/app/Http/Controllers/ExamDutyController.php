@@ -105,7 +105,7 @@ class ExamDutyController extends Controller
             // Check for time conflicts if date or time is being updated
             if (isset($validated['duty_date']) || isset($validated['start_time']) || isset($validated['end_time'])) {
                 $lec_id = $validated['lec_id'] ?? $examDuty->lec_id;
-                $date = $validated['duty_date'] ?? $examDuty->duty_date;
+                $duty_date = $validated['duty_date'] ?? $examDuty->duty_date;
                 $start_time = $validated['start_time'] ?? $examDuty->start_time;
                 $end_time = $validated['end_time'] ?? $examDuty->end_time;
 

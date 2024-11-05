@@ -16,7 +16,7 @@ class Lecturers extends Model
         'name',
         'email',
         'phone',
-        'Address',
+        'address',
         'position',
         'department',
     ];

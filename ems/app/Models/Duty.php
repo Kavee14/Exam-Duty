@@ -9,25 +9,25 @@ class Duty extends Model
 {
     use HasFactory;
 
-    protected $table = 'duty';
+    // protected $table = 'duty';
 
     protected $fillable = [
-        'duty_date',
+        'lec_id',
         'course_code',
+        'duty_date',
         'start_time',
         'end_time',
         'exam_hall',
-        'lec_id',
     ];
 
-    protected $casts = [
-        'duty_date' => 'date',
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'duty_date' => 'date',
+    //     'start_time' => 'datetime',
+    //     'end_time' => 'datetime',
+    // ];
 
     public function lecturers()
     {
-        return $this->belongsTo(Lecturers::class, 'lec_id', 'lec_id');
+        return $this->belongsTo(Lecturers::class, 'lec_id');
     }
 }

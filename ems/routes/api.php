@@ -15,7 +15,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/getDuties', [DutyController::class, 'getDutiesByDate']);
 
 Route::post('login', [UserController::class, 'login']);
-
+Route::get('user/{lec_id}', [UserController::class, 'getUserById']);
+// Route::post('/register', [UserController::class, 'register']);
+Route::put('user/{lec_id}', [UserController::class, 'updateUser']);
 
 Route::prefix('v1')->group(function () {
     Route::get('lecturers/getAll', [LecturerController::class, 'index']);
@@ -32,5 +34,7 @@ Route::prefix('v1')->group(function () {
 
 //    Route::get('/upcoming-duties/{lec_id}', [DutyController::class, 'getUpcomingDuties']);
 //    Route::get('upcoming-duties/{lec_id}', [DutyController::class, 'getUpcomingDuties']);
+
+// Route::post('/login', [UserController::class, 'login']);
 
 });
